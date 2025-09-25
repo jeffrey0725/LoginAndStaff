@@ -29,9 +29,48 @@
 		214BF3252E82C096002E9B66 /* LoginAndStaffUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LoginAndStaffUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		211D04572E85AA1A00CC721B /* Exceptions for "LoginAndStaff" folder in "LoginAndStaffTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CustomLayout/Style.swift,
+				Manager/NetworkManager.swift,
+				Manager/StoreManager.swift,
+				Model/LoginModel.swift,
+				Model/StaffListModel.swift,
+				View/ContentView.swift,
+				View/StaffListItemView.swift,
+				View/StaffListView.swift,
+				ViewModel/LoginViewModel.swift,
+				ViewModel/StaffListViewModel.swift,
+			);
+			target = 214BF31A2E82C096002E9B66 /* LoginAndStaffTests */;
+		};
+		211D04582E85AA1A00CC721B /* Exceptions for "LoginAndStaff" folder in "LoginAndStaffUITests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				CustomLayout/Style.swift,
+				Manager/NetworkManager.swift,
+				Manager/StoreManager.swift,
+				Model/LoginModel.swift,
+				Model/StaffListModel.swift,
+				View/ContentView.swift,
+				View/StaffListItemView.swift,
+				View/StaffListView.swift,
+				ViewModel/LoginViewModel.swift,
+				ViewModel/StaffListViewModel.swift,
+			);
+			target = 214BF3242E82C096002E9B66 /* LoginAndStaffUITests */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		214BF3102E82C095002E9B66 /* LoginAndStaff */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				211D04572E85AA1A00CC721B /* Exceptions for "LoginAndStaff" folder in "LoginAndStaffTests" target */,
+				211D04582E85AA1A00CC721B /* Exceptions for "LoginAndStaff" folder in "LoginAndStaffUITests" target */,
+			);
 			path = LoginAndStaff;
 			sourceTree = "<group>";
 		};
