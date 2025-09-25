@@ -9,11 +9,13 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
-    @Published var email: String = ""
-    @Published var password: String = ""
+    @Published var email: String = "eve.holt@reqres.in"
+    @Published var password: String = "cityslicka"
     
     @Published var alertMessage: String = ""
     @Published var isShowAlert: Bool = false
+    @Published var isLoadingApi: Bool = false
+    @Published var isLoggedIn: Bool = false
     
     private var cancellables = Set<AnyCancellable>()
     
@@ -42,15 +44,34 @@ class LoginViewModel: ObservableObject {
                 return
             } else {
                 // passed local checking
+                isLoadingApi = true
                 NetworkManager.shared.request(ApiDomain().domain + ApiPath().login,
                                               "POST",
                                               [:],
                                               ["delay": "5"],
                                               LoginRequest(email: email, password: password))
                     .sink(receiveCompletion: { (completion) in
-                        
+                        switch completion {
+                        case .finished:
+                            break;
+                        case .failure(let error):
+                            print("debug error: \(error.localizedDescription)")
+                            self.alertMessage = error.localizedDescription
+                            self.isShowAlert = true
+                        }
                     }, receiveValue: { (response: LoginResponse) in
+                        self.isLoadingApi = false
+                        // check if token returne
+                        if let _token = response.token {
+                            StoreManager.shared.storeToken(token: _token)
+                            self.isLoggedIn = true
+                            return
+                        }
                         
+                        if let _error = response.error {
+                            self.alertMessage = _error
+                            self.isShowAlert = true
+                        }
                     })
                     .store(in: &cancellables)
                 return

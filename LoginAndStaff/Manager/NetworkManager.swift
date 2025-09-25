@@ -27,7 +27,7 @@ class NetworkManager {
             request.setValue(value, forHTTPHeaderField: key)
         })
         
-        if let _body = body {
+        if let _body = body, method == "POST" {
             do {
                 request.httpBody = try JSONEncoder().encode(_body)
             } catch {
@@ -37,6 +37,10 @@ class NetworkManager {
         
         return URLSession.shared.dataTaskPublisher(for: request)
             .tryMap(({ (data, response) in
+                guard let _ = response as? HTTPURLResponse else {
+                    throw URLError(.badServerResponse)
+                }
+                
                 return data
             }))
             .decode(type: T.self, decoder: JSONDecoder())
@@ -51,4 +55,5 @@ struct ApiDomain {
 
 struct ApiPath {
     let login = "api/login"
+    let users = "api/users"
 }
