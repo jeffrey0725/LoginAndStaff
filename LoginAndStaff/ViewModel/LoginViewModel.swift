@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 class LoginViewModel: ObservableObject {
-    @Published var email: String = "eve.holt@reqres.in"
-    @Published var password: String = "cityslicka"
+    @Published var email: String = ""
+    @Published var password: String = ""
     
     @Published var alertMessage: String = ""
     @Published var isShowAlert: Bool = false
